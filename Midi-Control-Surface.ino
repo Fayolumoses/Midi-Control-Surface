@@ -59,6 +59,10 @@ void setup() {
     
 }
 
+void loop() {
+  // put your main code here, to run repeatedly
+}
+
 void pots(void *pvParameters)
 {
   (void) pvParameters;
@@ -142,7 +146,4 @@ void midi_transmit(void *pvParameters)
   }
 }
 
-void loop() {
-  // put your main code here, to run repeatedly
-}
 
