@@ -17,10 +17,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Arduino CLI
-        uses: arduino/setup-arduino-cli@v1
+        uses: arduino/compile-sketches@v1
         with:
-          version: 'latest'
-
-      - name: Compile sketch
-        run: |
-          arduino-cli compile --fqbn arduino:avr:leonardo ./Midi-Control-Surface/Midi_Things.ino
+          fqbn: arduino:avr:leonardo
+          sketch-paths: |
+            - MidiThings/Midi_Things
+          libraries: |
+            - name: FreeRTOS
+            - name: MIDIUSB
