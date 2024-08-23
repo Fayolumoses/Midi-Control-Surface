@@ -21,7 +21,7 @@ jobs:
         with:
           fqbn: arduino:avr:leonardo
           sketch-paths: |
-            - ./Midi_Things
+            - ./
           libraries: |
             - name: FreeRTOS
             - name: MIDIUSB
