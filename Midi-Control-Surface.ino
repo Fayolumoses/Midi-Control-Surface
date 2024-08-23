@@ -1,4 +1,5 @@
 #include "include/MyLib.h"
+#include "include/Sev_Seg.h"
 #include <Arduino_FreeRTOS.h>
 #include <queue.h>
 #include "MIDIUSB.h"
@@ -8,6 +9,7 @@ SemaphoreHandle_t mutex;
 
 Analog_Multiplexer plex(SIG, EN, S_0, S_1, S_2, S_3);
 Input_Channel channels[TOTAL_NO_CHANNELS];
+Segment seg(SEG_A,SEG_B,SEG_C,SEG_D,SEG_E,SEG_F,SEG_G,SEG_DP);
 
 QueueHandle_t structQueue;
 
@@ -21,7 +23,7 @@ void setup() {
   plex.begin();
   midi_channel = 1;
   Serial.begin(9600);
-  Serial.print("Start Program");
+  seg.begin(COMMON_CATHODE);
   setup_channels(channels, plex);
   structQueue = xQueueCreate(10, sizeof(midiEventPacket_t));
 
@@ -57,6 +59,10 @@ void setup() {
                 1,
                 NULL);
     
+}
+
+void loop() {
+  // put your main code here, to run repeatedly
 }
 
 void pots(void *pvParameters)
@@ -112,6 +118,7 @@ void bank_selector(void *pvParameters)
   {
     c = get_channel();
     disp_channel(c);
+    seg.display(c);
 
     if (get_button_pressed(plex) == B_PREV){
       (c == 1)? set_channel(16): set_channel(c - 1);
@@ -138,13 +145,8 @@ void midi_transmit(void *pvParameters)
     if (xQueueReceive(structQueue, &midi_event, portMAX_DELAY)) {
       MidiUSB.sendMIDI(midi_event); 
       MidiUSB.flush();
-      // Serial.println("Midi Data: " + String(midi_event.header)+" " + String(midi_event.byte1) + " " + String(midi_event.byte2) + " " + String(midi_event.byte3));
-      // delay(50);
     }
   }
 }
 
-void loop() {
-  // put your main code here, to run repeatedly
-}
 
