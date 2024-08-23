@@ -138,8 +138,6 @@ void midi_transmit(void *pvParameters)
     if (xQueueReceive(structQueue, &midi_event, portMAX_DELAY)) {
       MidiUSB.sendMIDI(midi_event); 
       MidiUSB.flush();
-      // Serial.println("Midi Data: " + String(midi_event.header)+" " + String(midi_event.byte1) + " " + String(midi_event.byte2) + " " + String(midi_event.byte3));
-      // delay(50);
     }
   }
 }
