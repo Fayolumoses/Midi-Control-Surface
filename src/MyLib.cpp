@@ -28,4 +28,5 @@ BUTTON get_button_pressed(const Analog_Multiplexer analog_input){
 
 void disp_channel(int channel){
   Serial.println("Channel: " + String(channel));
+  
 }

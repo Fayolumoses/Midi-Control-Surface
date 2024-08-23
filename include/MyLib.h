@@ -33,6 +33,15 @@
 #define PREV 13
 #define PLAY 14
 
+#define SEG_A A0
+#define SEG_B 8
+#define SEG_C 5
+#define SEG_D 6
+#define SEG_E 9
+#define SEG_F 10
+#define SEG_G 11
+#define SEG_DP 12
+
 enum BUTTON { B_NEXT,
               B_PREV,
               B_PLAY,
