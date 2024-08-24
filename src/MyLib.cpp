@@ -11,12 +11,12 @@ void print_all_inputs(const Analog_Multiplexer& analog_input){
 
 void setup_channels(Input_Channel * c, const Analog_Multiplexer& analog_input) {
     Input_Channel::set_analog_multiplexer(analog_input);
-    c[0].begin(50, FADER_1, 0x66, 0x67);
-    c[1].begin(50, FADER_2, 0x68, 0x69);
-    c[2].begin(50, FADER_3, 0x6A, 0x6B);
-    c[3].begin(50, FADER_4, 0x6C, 0x6D);
-    c[4].begin(50, FADER_5, 0x6E, 0x6F);
-    c[5].begin(50, FADER_6, 0x70, 0x71);
+    c[0].begin(PAN_1, FADER_1, 0x66, 0x67);
+    c[1].begin(PAN_2, FADER_2, 0x68, 0x69);
+    c[2].begin(PAN_3, FADER_3, 0x6A, 0x6B);
+    c[3].begin(PAN_4, FADER_4, 0x6C, 0x6D);
+    c[4].begin(PAN_5, FADER_5, 0x6E, 0x6F);
+    c[5].begin(PAN_6, FADER_6, 0x70, 0x71);
 }
 
 BUTTON get_button_pressed(const Analog_Multiplexer analog_input){
