@@ -128,6 +128,15 @@ void bank_selector(void *pvParameters)
       (c == 16)? set_channel(1): set_channel(c + 1);
       delay(500);
     }
+    else if (get_button_pressed(plex) == B_PLAY){
+      noteOn(byte channel, byte pitch, byte velocity)
+      midiEventPacket_t play_command = {0x09, 0x90, 48, 64};
+      xQueueSend(structQueue, &play_command, portMAX_DELAY);
+      delay(5);
+      play_command = {0x08, 0x80, 48, 64};
+      xQueueSend(structQueue, &play_command, portMAX_DELAY);
+      delay(500);
+    }
 
     vTaskDelay(1);
   }
