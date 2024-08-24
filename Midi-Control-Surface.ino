@@ -129,7 +129,6 @@ void bank_selector(void *pvParameters)
       delay(500);
     }
     else if (get_button_pressed(plex) == B_PLAY){
-      noteOn(byte channel, byte pitch, byte velocity)
       midiEventPacket_t play_command = {0x09, 0x90, 48, 64};
       xQueueSend(structQueue, &play_command, portMAX_DELAY);
       delay(5);
